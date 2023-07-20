@@ -8,19 +8,22 @@ const Home = () => {
         {title : "Welcome party", body: "lorem ipsum...", author: "Hove", id: 2},
         {title : "web dev top tips", body: "lorem ipsum...", author: "Plaxie", id: 3}
     ]);
+    const [name,setName] = useState("Mario");
     const handleDelete = (id) =>{
         const newBlog = blogs.filter(blog => blog.id !== id);
         setBlogs(newBlog);
     }
     useEffect(() => {
         console.log(" use effect run");
-        console.log(blogs);
+        console.log(name);
 
-    });
+    },[name]);
+    // you put an empty array if you want to run the array once
     return ( 
         <div className=" home">
            <Bloglist blogs = {blogs} title = {"All blogs"} handleDelete = {handleDelete} />
-          
+          <button onClick = {() => setName("Edina")}> change name</button>
+          <p>{name}</p>
         </div>
      );
 }
