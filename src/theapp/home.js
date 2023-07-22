@@ -4,30 +4,25 @@ import Bloglist from './bloglist';
 
 const Home = () => {
     const [blogs, setBlogs] = useState(null);
+    const [isPending, setIsPendeing ] = useState(true);
 
-    const [name, setName] = useState("Mario");
-    const handleDelete = (id) => {
-        const newBlog = blogs.filter(blog => blog.id !== id);
-        setBlogs(newBlog);
-    }
-
-    useEffect(() => {
-        fetch(" http://localhost:3000/blogs")
+    useEffect(() => { 
+        setTimeout (() => {
+            fetch(" http://localhost:3000/blogs")
             .then(res => {
                 return res.json();
             })
             .then(data => {
                 setBlogs(data);
+                setIsPendeing(false);
             })
+        },2000)
+   
     }, []);
-
-    // you put an empty array if you want to run the array once
     return (
         <div className=" home">
-            {blogs && <Bloglist blogs = {blogs} title = {"All blogs"} 
-             handleDelete = {handleDelete} />
-               }
-                 <button onClick = {() => setName("Edina")}> change name</button>
+            {isPending && <div> Loading.....</div>}
+            {blogs && <Bloglist blogs = {blogs} title = {"All blogs"}/>}
         </div>
     );
 }
