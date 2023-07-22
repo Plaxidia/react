@@ -2,6 +2,8 @@ const Bloglist = ({blogs,title,handleDelete}) => {
 
     //const blogs = props.blogs;
     //console.log(props,blogs);
+    
+    //console.log("blogs",blogs);
 
     return (
         <div className="blog-list">
