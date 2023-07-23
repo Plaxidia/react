@@ -36,4 +36,15 @@ const Usefetch =(url) => {
     }, [url]);
     return {error, dataa, isPending};
 }
+
+
+
+
+
+
+
+
+
+
+
 export default Usefetch;
